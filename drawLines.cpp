@@ -46,9 +46,6 @@ int main(int argc, char* argv[])
     
   // окно для отображения картинки
   cvNamedWindow("original",CV_WINDOW_AUTOSIZE);
-  cvNamedWindow("src",CV_WINDOW_AUTOSIZE);
-  cvNamedWindow("binary",CV_WINDOW_AUTOSIZE);
-  cvNamedWindow("contours",CV_WINDOW_AUTOSIZE);
 
   // преобразуем в градации серого
   cvCvtColor(src, gray, CV_RGB2GRAY);
@@ -104,12 +101,9 @@ int main(int argc, char* argv[])
 	int b = M->y;
 	cvLine( src, cvPoint(M->x=100, M->y = (1/koeff)*(M->x)+b), cvPoint(M->x = 500, M->y = (1/koeff)*(M->x)+b), CV_RGB(100,200,100), 3, 8);
   } 
-  // показываем картинки
+  // показываем картинку
   cvShowImage("original",image);
-  cvShowImage("src",src);
-  cvShowImage("binary", bin);
-  cvShowImage("contours", dst);
-
+  
   // ждём нажатия клавиши
   cvWaitKey(0);
 
