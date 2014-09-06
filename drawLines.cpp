@@ -89,14 +89,21 @@ int main(int argc, char* argv[])
 
   cvLine( src, cvPoint(M1->x, M1->y), cvPoint(M2->x, M2->y), CV_RGB(250,0,0), 3, 8);
 
-  // koeff naklona priamoi
-  float koeff = (M2->y - M1->y) / (M2->x - M1->x);
+  if ((M2->x - M1->x) == 0)
+  {
+	M->y = M1->y;
+	cvLine( src, cvPoint(M->x=100, M->y ), cvPoint(M->x = 500, M->y), CV_RGB(100,200,100), 3, 8);
+  }
+  else
+  {
+	// koeff naklona priamoi
+	float koeff = (M2->y - M1->y)/(M2->x - M1->x);
 
-  M->x = M1->x + (abs(M1->x - M2->x)/2);
-  M->y = M1->y + (abs(M1->y - M2->y)/2);
-  int b = M->y;
-  cvLine(src, cvPoint(M->x=100, M->y = (1/koeff)*(M->x) + b), cvPoint(M->x = 500, M->y = (1/koeff)*(M->x) + b), CV_RGB(100,200,100), 3, 8);
-
+	M->x = M1->x+(abs(M1->x - M2->x)/2);
+	M->y = M1->y+(abs(M1->y - M2->y)/2);
+	int b = M->y;
+	cvLine( src, cvPoint(M->x=100, M->y = (1/koeff)*(M->x)+b), cvPoint(M->x = 500, M->y = (1/koeff)*(M->x)+b), CV_RGB(100,200,100), 3, 8);
+  } 
   // показываем картинки
   cvShowImage("original",image);
   cvShowImage("src",src);
